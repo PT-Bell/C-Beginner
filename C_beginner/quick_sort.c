@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define MAX_SIZE 9 
-#define SWAP(x, y, tmp) ( (tmp)=(x), (x)=(y), (y)=(tmp) )
+#define SWAP(x, y, tmp) ((tmp)=(x), (x)=(y), (y)=(tmp))
 
 int partition (int arr[], int left, int right);
 void quick_sort(int arr[], int left, int right);
