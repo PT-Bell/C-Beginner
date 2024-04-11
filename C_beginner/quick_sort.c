@@ -22,7 +22,7 @@ int partition (int arr[], int left, int right){
 
     low = left + 1;
     high = right;
-
+    
     //low와 high가 교차하면 종료
     while(low < high) {
         //pivot과 비교, low가 작으면 오른쪽(다음) 검사
