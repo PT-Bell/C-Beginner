@@ -51,7 +51,6 @@ int partition (int arr[], int left, int right){
 }
 
 void quick_sort(int arr[], int left, int right){
-
     if(left < right){
         //pivot 위치 정렬
         int p = partition(arr, left, right);
