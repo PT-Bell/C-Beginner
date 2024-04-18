@@ -1,3 +1,6 @@
-#include <stdio.h>
+#ifndef MENU_H
+#define MENU_H
 
-void start_menu(void);
+void start_menu();
+
+#endif // MENU_H
