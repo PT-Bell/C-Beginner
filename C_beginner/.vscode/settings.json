@@ -1,9 +1,0 @@
-{
-    "explorer.sortOrder": "type",
-    "files.exclude": {
-        "**/*.o": true,
-        "**/*.dSYM": true,
-    },
-    "C_Cpp.errorSquiggles": "Disabled",
-    
-}
