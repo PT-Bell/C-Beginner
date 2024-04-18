@@ -17,26 +17,26 @@ int main(){
     }
 
     while(size < N) {
-        int duplicate_check = 0; //ì¤‘ë³µ ì²´í¬
+        int duplicate_check = 0; //Áßº¹ Ã¼Å©
 
-        printf("ì´ ë¦„ : ");
+        printf("ÀÌ ¸§ : ");
         scanf("%s", arr[size].name);
 
         int len = strlen(arr[size].name);
         if(len > 15){
-            printf("ì…ë ¥ ê°€ëŠ¥í•œ ê¸€ì ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
+            printf("ÀÔ·Â °¡´ÉÇÑ ±ÛÀÚ ¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù.\n");
             continue;
         }
 
-        printf("ì „ í™” ë²ˆ í˜¸ : ");
+        printf("Àü È­ ¹ø È£ : ");
         scanf("%s", arr[size].number);
 
         for (int i = 0; i < size + 1; i++) {
             for (int j = i + 1; j < size + 1; j++) {
                 if (strcmp(arr[i].name, arr[j].name) == 0 &&
                         strcmp(arr[i].number, arr[j].number) == 0) {
-                    printf("== ë¹„ ì • ìƒ  ì… ë ¥ ==\n");
-                    printf("ë° ì´ í„° ê°€  ì¤‘ ë³µ ë˜ ì—ˆ ìŠµ ë‹ˆ ë‹¤ .\n");
+                    printf("== ºñ Á¤ »ó  ÀÔ ·Â ==\n");
+                    printf("µ¥ ÀÌ ÅÍ °¡  Áß º¹ µÇ ¾ú ½À ´Ï ´Ù .\n");
                     duplicate_check = 1;
                     break;
                 }
@@ -51,7 +51,7 @@ int main(){
 
         if(size >= 2){
             while(1){
-                printf("ì¶”ê°€ ì…ë ¥ 0, ì¢…ë£Œ 1: ");
+                printf("Ãß°¡ ÀÔ·Â 0, Á¾·á 1: ");
                 scanf("%d", &exit_choice);
 
                 if(exit_choice == 0){
@@ -70,12 +70,12 @@ int main(){
                     break;
                 }
                 else
-                        printf("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.\n");
+                        printf("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.\n");
             }
         }
     }
 
-    printf("\n== ì „ í™” ë²ˆ í˜¸ ë¶€ ==\n\n");
+    printf("\n== Àü È­ ¹ø È£ ºÎ ==\n\n");
     for (int i = 0; i < size; i++) {
         printf("%s      %s\n", arr[i].name, arr[i].number);
     }

@@ -1,39 +1,19 @@
 {
     "tasks": [
         {
-            "type": "shell",
             "label": "g++",
+            "type": "shell",
             "command": "g++",
             "args": [
                 "-g",
-                //1. 헤더파일 포함하고 싶을 때
-                // "${fileDirname}/*.cpp",
-
-                //2. 그냥 파일만 컴파일하고 싶을 때
                 "${file}",
-
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.o", //파일 빌드, 실행
-
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "presentation": {   //Explained in detail below
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "clear": false,
-                "showReuseMessage": false
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
+            }
         }
     ],
     "version": "2.0.0"
