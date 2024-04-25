@@ -110,9 +110,9 @@ void readAndSavePokemon(const char* pokemonName) {
 }
 
 void print_spec(void){
-    FILE *file = fopen("user_pokemon.txt", "r");
+    FILE *userPokemonList = fopen("user_pokemon.txt", "r");
     
-    if (file == NULL) {
+    if (userPokemonList == NULL) {
         printf("파일 열기 오류");
         return;
     }
@@ -121,7 +121,7 @@ void print_spec(void){
 
     printf("===== 유저 포켓몬 스펙 =====\n");
 
-    while (fscanf(file, "%49s %19s %d %d", pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp) != EOF) {
+    while (fscanf(userPokemonList, "%49s %19s %d %d", pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp) != EOF) {
         printf("이름: %s\n", pokemon.name);
         printf("속성: %s\n", pokemon.type);
         printf("공격력: %d\n", pokemon.attack);
@@ -130,5 +130,5 @@ void print_spec(void){
     }
 
     printf("통과");
-    fclose(file);
+    fclose(userPokemonList);
 }
