@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "typeinfo": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     }
 }

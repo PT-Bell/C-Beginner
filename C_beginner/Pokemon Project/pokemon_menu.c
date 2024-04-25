@@ -15,7 +15,7 @@ void start_menu(void){
 void newgame_or_loadfile(void){
     int choice;
     printf("===============================\n");
-    printf("     1.»õ·ÎÇÏ±â  2.ÀÌ¾îÇÏ±â\n");
+    printf("     1. ìƒˆë¡œí•˜ê¸°  2. ì´ì–´í•˜ê¸°\n");
     do {
         printf(">> ");
         scanf("%d", &choice);
@@ -25,11 +25,11 @@ void newgame_or_loadfile(void){
             return;
 
             case 2:
-            printf("2¹ø\n");
+            printf("2ë²ˆ\n");
             return;
 
             default:
-            printf("Àß¸øµÈ ÀÔ·Â\n");
+            printf("ì˜ëª»ëœ ì„ íƒ\n");
             break;
         }
     }while(choice != 1 || choice != 2);
@@ -38,28 +38,26 @@ void newgame_or_loadfile(void){
 void start_newgame(void){
     int choice;
     printf("===============================\n");
-    printf("¾î´À Æ÷ÄÏ¸óÀ» ¼±ÅÃÇÏ½Ã°Ú½À´Ï±î?\n");
-    printf("    1.ÆÄÀÌ¸® 2.ÀÌ»óÇØ¾¾ 3.²¿ºÎ±â\n");
+    printf("ì–´ëŠ í¬ì¼“ëª¬ì„ ì„ íƒí•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n");
+    printf("    1.íŒŒì´ë¦¬ 2.ì´ìƒí•´ì”¨ 3.ê¼¬ë¶€ê¸°\n");
     do {
         printf(">> ");
         scanf("%d", &choice);
         switch(choice){
             case 1:
-            readAndSavePokemon("ÆÄÀÌ¸®");
-            printf("ÆÄÀÌ¸®\n");
+            readAndSavePokemon("íŒŒì´ë¦¬");
             return;
 
             case 2:
-            readAndSavePokemon("ÀÌ»óÇØ¾¾");
-            printf("ÀÌ»óÇØ¾¾\n");
+            readAndSavePokemon("ì´ìƒí•´ì”¨");
             return;
 
             case 3:
-            readAndSavePokemon("²¿ºÎ±â");
-            printf("²¿ºÎ±â\n");
+            readAndSavePokemon("ê¼¬ë¶€ê¸°");
             return;
 
             default:
+            printf("ì˜ëª»ëœ ì„ íƒ\n");
             break;
         }
     }while(choice != 1 || choice != 2 || choice != 3);
@@ -70,39 +68,40 @@ void readAndSavePokemon(const char* pokemonName) {
     FILE *userPokemonFile = fopen("user_pokemon.txt", "w");
 
     if (allPokemonFile == NULL) {
-        printf("all_pokemon.txt ÆÄÀÏ ¿­±â ¿À·ù\n");
+        printf("all_pokemon.txt ì„ ì—´ì§€ ëª»í•¨\n");
         return;
     }
     if (userPokemonFile == NULL) {
-        printf("user_pokemon.txt ÆÄÀÏ ¿­±â ¿À·ù\n");
+        printf("user_pokemon.txt ì„ ì—´ì§€ ëª»í•¨\n");
         return;
     }
 
     char line[500];
-    int found = 0; 
+    int found = 0, n = 1, num = 1;
 
     while (fgets(line, sizeof(line), allPokemonFile)) {
-        char name[50], type[20];
-        int attack, hp;
-        printf("ÀúÀå ÇÔ¼ö\n");
-        // °³Çà ¹®ÀÚ Á¦°Å
+        Pokemon pokemon;
+        // ê°œí–‰ ë¬¸ì ì œê±°
         size_t len = strlen(line);
         if (len > 0 && line[len-1] == '\n') {
             line[len-1] = '\0';
         }
-        
 
-        sscanf(line, "%*d\t%49s\t%19s\t%d\t%d", name, type, &attack, &hp);
+        // ë¬¸ìì—´ì—ì„œ ë°ì´í„° ì¶”ì¶œ
+        sscanf(line, "%d %s %s %d %d", &pokemon.number, pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp);
 
-        if (strcmp(name, pokemonName) == 0) {
-            printf("ÀúÀå\n");
-            fprintf(userPokemonFile, "%s %s %d %d\n", name, type, attack, hp);
-            found = 1; 
+        printf("%d %s %s %d %d", &pokemon.number, pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp);
+
+        if (strcmp(pokemon.name, pokemonName) == 0) {
+            fprintf(userPokemonFile, "%d %s %s %d %d\n", num, pokemon.name, pokemon.type, pokemon.attack, pokemon.hp);
+            found = 1;
+            num++;
             break;
         }
     }
+
     if (!found) {
-        printf("%s Æ÷ÄÏ¸óÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.\n", pokemonName);
+        printf("%s ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤..\n", pokemonName);
     }
 
     fclose(allPokemonFile);
@@ -113,22 +112,23 @@ void print_spec(void){
     FILE *userPokemonList = fopen("user_pokemon.txt", "r");
     
     if (userPokemonList == NULL) {
-        printf("ÆÄÀÏ ¿­±â ¿À·ù");
+        printf("íŒŒì¼ì„ ì—´ì§€ ëª»í•¨");
         return;
     }
 
-    Pokemon pokemon;
+    Pokemon myPokemon;
 
-    printf("===== À¯Àú Æ÷ÄÏ¸ó ½ºÆå =====\n");
+    printf("\n===== ë³´ìœ í•œ í¬ì¼€ëª¬ ëª©ë¡ =====\n");
 
-    while (fscanf(userPokemonList, "%49s %19s %d %d", pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp) != EOF) {
-        printf("ÀÌ¸§: %s\n", pokemon.name);
-        printf("¼Ó¼º: %s\n", pokemon.type);
-        printf("°ø°İ·Â: %d\n", pokemon.attack);
-        printf("HP: %d\n", pokemon.hp);
+    while (fscanf(userPokemonList, "%d %s %s %d %d", myPokemon.number, myPokemon.name, myPokemon.type, myPokemon.attack, myPokemon.hp) != EOF) {
+        printf("Number: %s\n", myPokemon.name);
+        printf("Name: %s\n", myPokemon.name);
+        printf("Type: %s\n", myPokemon.type);
+        printf("ATK: %d\n", myPokemon.attack);
+        printf("HP: %d\n", myPokemon.hp);
         printf("------------------------\n");
     }
 
-    printf("Åë°ú");
+    printf("ì¢…ë£Œ");
     fclose(userPokemonList);
 }
