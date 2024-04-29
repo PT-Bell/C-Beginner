@@ -10,11 +10,10 @@ typedef struct {
     int hp;
 } Pokemon;
 
-void readAndSavePokemon(const char* pokemonName);
 void start_menu(void);
+void readAndSavePokemon(const char* pokemonName);
 void newgame_or_loadfile(void);
 void start_newgame(void);
 void print_spec(void);
-
 
 #endif
