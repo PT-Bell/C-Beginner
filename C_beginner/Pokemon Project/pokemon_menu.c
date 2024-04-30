@@ -81,19 +81,20 @@ void readAndSavePokemon(const char* pokemonName) {
 
     while (fgets(line, sizeof(line), allPokemonFile)) {
         Pokemon pokemon;
-        // 개행 문자 제거
+
+        //개행 문자 제거
         size_t len = strlen(line);
         if (len > 0 && line[len-1] == '\n') {
             line[len-1] = '\0';
         }
 
         // 문자열에서 데이터 추출
-        sscanf(line, "%d %s %s %d %d", &pokemon.number, pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp);
-
-        printf("%d %s %s %d %d", &pokemon.number, pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp);
+        sscanf(line, "%s %s %s %s", &pokemon.name, &pokemon.type, &pokemon.attack, &pokemon.hp);
 
         if (strcmp(pokemon.name, pokemonName) == 0) {
-            fprintf(userPokemonFile, "%d %s %s %d %d\n", num, pokemon.name, pokemon.type, pokemon.attack, pokemon.hp);
+            sscanf(line, "%s %s %s %s", pokemon.name, pokemon.type, pokemon.attack, pokemon.hp);
+
+            fprintf(userPokemonFile, "%s %s %d %d\n", pokemon.name, pokemon.type, pokemon.attack, pokemon.hp);
             found = 1;
             num++;
             break;
@@ -106,6 +107,7 @@ void readAndSavePokemon(const char* pokemonName) {
 
     fclose(allPokemonFile);
     fclose(userPokemonFile);
+    printf("파일 종료\n");
 }
 
 void print_spec(void){
@@ -120,8 +122,8 @@ void print_spec(void){
 
     printf("\n===== 보유한 포케몬 목록 =====\n");
 
-    while (fscanf(userPokemonList, "%d %s %s %d %d", myPokemon.number, myPokemon.name, myPokemon.type, myPokemon.attack, myPokemon.hp) != EOF) {
-        printf("Number: %s\n", myPokemon.name);
+    while (fscanf(userPokemonList, "%s %s %s %s %s", &myPokemon.number, myPokemon.name, myPokemon.type, &myPokemon.attack, &myPokemon.hp) != EOF) {
+        printf("Number: %d\n", myPokemon.number);
         printf("Name: %s\n", myPokemon.name);
         printf("Type: %s\n", myPokemon.type);
         printf("ATK: %d\n", myPokemon.attack);

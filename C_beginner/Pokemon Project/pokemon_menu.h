@@ -3,7 +3,6 @@
 #define MENU_H
 
 typedef struct {
-    int number;
     char name[50];
     char type[20];
     int attack;
