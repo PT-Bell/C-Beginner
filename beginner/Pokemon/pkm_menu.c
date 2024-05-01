@@ -33,7 +33,7 @@ void newgame_or_loadfile(void){
             printf("잘못된 선택\n");
             break;
         }
-    }while(choice != 1 || choice != 2);
+    }while(choice != 0);
 }
 
 void start_newgame(void){
@@ -61,7 +61,7 @@ void start_newgame(void){
             printf("잘못된 선택\n");
             break;
         }
-    }while(choice != 1 || choice != 2 || choice != 3);
+    }while(choice != 0);
 }
 
 void readAndSavePokemon(const char* pokemonName) {
@@ -78,7 +78,7 @@ void readAndSavePokemon(const char* pokemonName) {
     }
 
     char line[500];
-    int found = 0, n = 1, num = 1;
+    int found = 0;
 
     while (fgets(line, sizeof(line), allPokemonFile)) {
         Pokemon pokemon;
@@ -90,14 +90,13 @@ void readAndSavePokemon(const char* pokemonName) {
         }
 
         // 문자열에서 데이터 추출
-        sscanf(line, "%d %s %s %d %d", &pokemon.number, pokemon.name, pokemon.type, &pokemon.attack, &pokemon.hp);
+        sscanf(line, "%d %s %s %d %d", &pokemon.number, pokemon.name, 
+                        pokemon.type, &pokemon.attack, &pokemon.hp);
 
         if (strcmp(pokemon.name, pokemonName) == 0) {
-            sscanf(line, "%d %s %s %d %d", pokemon.number, pokemon.name, pokemon.type, pokemon.attack, pokemon.hp);
-
-            fprintf(userPokemonFile, "%d %s %s %d %d\n", pokemon.number, pokemon.name, pokemon.type, pokemon.attack, pokemon.hp);
+            fprintf(userPokemonFile, "%d %s %s %d %d\n", pokemon.number, pokemon.name, 
+                            pokemon.type, pokemon.attack, pokemon.hp);
             found = 1;
-            num++;
             break;
         }
     }
