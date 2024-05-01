@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "GCC",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -12,7 +12,8 @@
             ],
             "cStandard": "c99",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe"
         }
     ],
     "version": 4
